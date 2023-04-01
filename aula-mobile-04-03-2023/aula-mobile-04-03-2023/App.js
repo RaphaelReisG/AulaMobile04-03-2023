@@ -1,63 +1,49 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { View, Text, Button} from 'react-native';
 
 
-class App extends Component{
-  constructor(props){
-    super(props);
-    this.state = {
-      nome: 'Raphael',
-      valor: 0
-    };
 
-
-    this.aumentar = this.aumentar.bind(this);
-    this.diminuir = this.diminuir.bind(this);
-  }
+export default function App(){
+  const [nome, setNome] = useState('Raphael')
+  const [valor, setValor] = useState(0)
   
-  aumentar(){
-    var ok = this.state.valor + 1
-    this.setState({
-      valor: ok
-    });
+  function aumentar(){
+    var ok = valor + 1
+    setValor((ok))
   }
 
-  diminuir(){
-    var ok = this.state.valor - 1
-    if(this.state.valor>0){
-      this.setState({
-        valor: ok
-      });
+  function diminuir(){
+    var ok = valor - 1
+    if(valor>0){
+      setValor((ok))
     }
   }
 
 
-  render(){
     return(
       <View style={{ margin: 20, backgroundColor: 'black' }}>
         <Text style={{fontSize: 28, color: 'red', textAlign: 'center'}}>
           Contador de pessoas
         </Text>
         <Text style={{fontSize: 200, color: 'red', textAlign: 'center'}}>
-           {this.state.valor}
+           {valor}
         </Text>
 
 
-        <Button title="+" onPress={this.aumentar} />
+        <Button title="+" onPress={aumentar} />
         <Text style={{fontSize: 28, textAlign: 'center'}}>
           -
         </Text>
-        <Button title="-" onPress={this.diminuir} />
+        <Button title="-" onPress={diminuir} />
 
 
         <Text style={{fontSize: 40, color: 'red', textAlign: 'center'}}>
-          {this.state.nome}
+          {nome}
         </Text>
 
       </View>
     )
-  }
+  
 }
 
 
-export default App;
